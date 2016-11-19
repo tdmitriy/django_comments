@@ -1,0 +1,12 @@
+<ul>
+    {% for c in comments %}
+        <li>
+            {{ c.pub_date }}
+            {{ c.content }}
+            {% if c.children %}
+                {% include 'social/comment_tree.html' with comments=c.children %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
