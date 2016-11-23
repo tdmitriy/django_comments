@@ -1,0 +1,24 @@
+<div class="comments-wrapper">
+    {% for comment, replies in comments_list.items %}
+        <div id="comment-{{ comment.id }}" class="comment comment-level-1">
+            <div class="comment-wrapper">
+                <div class="comment-header">
+                    <img class="comment-header-avatar"
+                         src="http://www.gravatar.com/avatar/0641c4913a53a04c1af5ad5867a38488?s=35&d=mm">
+                    <div class="comment-header-author">
+                        <span class="comment-header-author-name">{{ comment.user.get_name }}</span>:
+                    </div>
+                    <div class="comment-header-anchor">
+                        <a class="comment-header-anchor-link" href="#">
+                            {{ comment.pub_date|date:'d E Y' }} at {{ comment.pub_date|time:'H:i' }}
+                        </a>
+                    </div>
+                </div>
+                <div class="comment-content">{{ comment.content }}</div>
+            </div>
+
+            {% include comments_replies_template %}
+        </div>
+
+    {% endfor %}
+</div>

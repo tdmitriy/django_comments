@@ -1,0 +1,24 @@
+{% for reply in replies %}
+    <div id="comment-{{ comment.id }}" class="comment">
+        <div class="comment-wrapper">
+            <div class="comment-header">
+                <img class="comment-header-avatar"
+                     src="http://www.gravatar.com/avatar/0641c4913a53a04c1af5ad5867a38488?s=35&d=mm">
+                <div class="comment-header-author">
+                    <span class="comment-header-author-name">{{ reply.user.get_name }}</span>:
+                </div>
+                <div class="comment-header-anchor">
+                    <a class="comment-header-anchor-link" href="#">
+                        {{ reply.pub_date|date:'d E Y' }} at {{ reply.pub_date|time:'H:i' }}
+                    </a>
+                </div>
+            </div>
+            <div class="comment-content">{{ reply.content }}</div>
+        </div>
+
+        {% if reply.children %}
+            {% include comments_replies_template with replies=reply.children %}
+        {% endif %}
+
+    </div>
+{% endfor %}

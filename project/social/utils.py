@@ -1,4 +1,5 @@
-from .models import Comment
+from .models import Reply
+from collections import OrderedDict
 
 
 def make_tree(items):
@@ -22,56 +23,25 @@ def make_tree(items):
     return tree
 
 
-# TODO remove this class. Sadly that i wrote this class and it's useless anymore :(
-class ThreadedComments(object):
-    def __init__(self):
-        self.all_comments = Comment.objects.all().order_by('-pub_date')
-        self.comments = []
-        self.replies = []
+def get_comments_and_replies(page):
+    """
+    1) Take the ids of comments from the page object
+    2) Filter replies with given comments ids
+    3) Create a dictionary with filtered replies on each comment
+    4) Make the final JSON with page info and dictionary of comments:
+    { 'has_next': True/False, 'comments': {comment: list_of_replies} }
+    :param page:
+    :return dictionary like {comment: list_of_replies}:
+    """
 
-        self._prepare_comments()
+    result = OrderedDict()
+    comments = page.object_list
+    comment_ids = comments.values_list('id', flat=True)
 
-    def _prepare_comments(self):
-        """
-        helper method that populates comments and replies
-        :return:
-        """
+    comment_replies = Reply.objects.filter(comment_id__in=comment_ids)
+    replies_tree = make_tree(comment_replies)
 
-        for comment in self.all_comments:
-            if comment.parent_id is None:
-                self.comments.append(comment)
-            else:
-                self.replies.append(comment)
+    for c in comments:
+        result[c] = [reply for reply in replies_tree if reply.comment_id == c.id]
 
-        # the current replies are sorted by asc, so reverse them
-        self.replies.reverse()
-
-    def _search_comment_replies(self, comment_id):
-        """
-        recursively search on comment replies
-        :param id param to search:
-        :return list of found replies:
-        """
-
-        result = []
-        replies = list(filter(lambda r: r.parent_id == comment_id, self.replies))
-
-        if replies:
-            for reply in replies:
-                result.append(reply)
-                result.extend(self._search_comment_replies(reply.id))
-
-        return result
-
-    def get_comments(self):
-        """
-        :return list of comments with replies:
-        """
-
-        result = []
-
-        for comment in self.comments:
-            comment_replies = self._search_comment_replies(comment.id)
-            result.append({comment: comment_replies})
-
-        return result
+    return result

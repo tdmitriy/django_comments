@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font: 13px/1.3846 "DejaVu Sans", Verdana, sans-serif;
+    color: #2f2f2f;
+    background: #fff;
+}
+
+html, body {
+    height: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.container-fill {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+.message-container {
+    display: flex;
+    flex-flow: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 95%;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 2px #ccc;
+}
+
+.message-container .header-wrapper {
+    flex: 0 1 auto;
+}
+
+.message-container .comments-wrapper {
+    flex: 1 1 auto;
+}
+
+.header-wrapper {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.comments-wrapper {
+    overflow-y: auto;
+}
+
+.comments-wrapper,
+.header-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.comment {
+    border-left: 1px dotted #d0d0d0;
+    margin: 25px 0;
+    padding: 0 0 0 25px;
+}
+
+.comment-wrapper {
+    padding-right: 2px;
+}
+
+.comment-wrapper:hover {
+    background: #f6f6f6;
+    outline: 4px solid #f6f6f6;
+}
+
+.comment-header {
+    padding-bottom: 4px;
+}
+
+.comment-header:before,
+.comment-header:after {
+    content: " ";
+    display: table;
+}
+
+.comment-header:after {
+    clear: both;
+}
+
+.comment-header-avatar {
+    float: left;
+}
+
+.comment-header-author {
+    display: block;
+    margin-left: 45px;
+    color: #104BA9;
+    font-size: 14px;
+}
+
+.comment-header-author-link,
+.comment-header-author-link:visited {
+    text-decoration: none;
+    color: #104BA9;
+}
+
+.comment-header-author-link:hover {
+    text-decoration: underline;
+}
+
+.comment-header-anchor {
+    display: block;
+    margin-left: 45px;
+    font-size: 11px;
+}
+
+.comment-header-anchor-link,
+.comment-header-anchor-link:visited {
+    text-decoration: none;
+    color: #007F16;
+}
+
+.comment-header-anchor-link:hover {
+    text-decoration: underline;
+    color: #104BA9;
+}
+
+.comment-content {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.comment-content img {
+    max-width: 100%;
+}
+
+.comment-reply-link,
+.comment-reply-link:visited,
+.comment-edit-link,
+.comment-edit-link:visited {
+    color: #007F16;
+}
+
+.comment-reply-link:hover,
+.comment-edit-link:hover {
+    color: #104BA9;
+}
+
+.comment-reply-link,
+.comment-reply-cancel-link,
+.comment-edit-link {
+    margin-right: 1em;
+    font-size: 12px;
+    font-family: "Liberation Sans", Arial, sans-serif;
+}
+
+.comment-under-moderation > .comment-content {
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+.comment-under-moderation > .comment-edit-link {
+    margin-top: -1em;
+    display: block;
+}
+
+.comment-form-container {
+    margin-top: 40px;
+}
+
+.comment-form p {
+    margin: 10px 0;
+}
+
+.comment-form label {
+    display: inline-block;
+    min-width: 5em;
+}
+
+.comment-form label[for='id_content'] {
+    display: none;
+}

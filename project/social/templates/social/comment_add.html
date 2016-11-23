@@ -1,0 +1,17 @@
+<div class="header-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{% url 'social:comment_add' %}" name="post_comment_form" class="form-group" method="post">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    {{ form.as_p }}
+                    {#                <textarea class="form-control custom-control" rows="3"#}
+                    {#                          placeholder="Write a new comment..." ></textarea>#}
+                    <span class="input-group-addon btn btn-default" onclick="post_comment_form.submit()">Post</span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
