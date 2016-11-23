@@ -1,5 +1,5 @@
 {% for reply in replies %}
-    <div id="comment-{{ comment.id }}" class="comment">
+    <div id="comment-{{ reply.id }}" class="comment">
         <div class="comment-wrapper">
             <div class="comment-header">
                 <img class="comment-header-avatar"
@@ -14,10 +14,14 @@
                 </div>
             </div>
             <div class="comment-content">{{ reply.content }}</div>
+            <a href="" class="comment-reply-link" data-comment-id="{{ comment.id }}" data-parent-id="{{ reply.id }}">Reply</a>
+
+            {# reply form will be injected here by js #}
         </div>
 
+        {# recursively render replies tree #}
         {% if reply.children %}
-            {% include comments_replies_template with replies=reply.children %}
+            {% include comments_replies_list_template with replies=reply.children %}
         {% endif %}
 
     </div>

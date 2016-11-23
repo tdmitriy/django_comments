@@ -15,9 +15,12 @@
                     </div>
                 </div>
                 <div class="comment-content">{{ comment.content }}</div>
+                <a href="" class="comment-reply-link" data-comment-id="{{ comment.id }}">Reply</a>
+
+                {# reply form will be injected here by js #}
             </div>
 
-            {% include comments_replies_template %}
+            {% include comments_replies_list_template %}
         </div>
 
     {% endfor %}

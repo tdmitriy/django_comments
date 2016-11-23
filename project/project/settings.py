@@ -90,6 +90,11 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugTrue',
         }
     },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(name)s.%(funcName)s:%(lineno)s- %(message)s'
+        },
+    },
     'handlers': {
         'console': {
             'level': 'DEBUG',
@@ -98,10 +103,16 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console'],
+        #     'formatter': 'simple',
+        # },
+        'social': {
+            'level': 'ERROR',
             'handlers': ['console'],
-        }
+            'formatter': 'simple',
+        },
     }
 }
 

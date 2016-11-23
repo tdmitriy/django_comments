@@ -1,0 +1,14 @@
+<div id="reply_template" class="collapse">
+    <form id="reply_form" action="{% url 'social:comment_reply' %}" class="form-group" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="comment">Your Reply:</label>
+
+            {{ comment_reply_form }}
+
+            <input type="hidden" value="" name="comment_id">
+            <input type="hidden" value="" name="parent_id">
+        </div>
+        <button id="btn_submit_reply" type="submit" class="btn btn-default">Post</button>
+    </form>
+</div>

@@ -7,10 +7,11 @@
     <script src="{% static 'libs/js/jquery.3.1.1.min.js' %}"></script>
     <script src="{% static 'libs/js/bootstrap.3.3.7.min.js' %}"></script>
 
+
     <link rel="stylesheet" href="{% static 'libs/css/bootstrap.3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'libs/css/bootstrap-theme.3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-
+    <script src="{% static 'script.js' %}"></script>
 
     <title>Home</title>
 </head>
@@ -20,12 +21,16 @@
     <div class="container">
         <div class="message-container">
 
-            {% include post_comment_template %}
+            {% include comment_post_template %}
 
-            {% include comments_template %}
+            {% include comments_list_template %}
 
 
         </div>
+
+        {# put hidden reply form in bottom of page #}
+        {% include comment_reply_template %}
+
     </div>
 </div>
 
