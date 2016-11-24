@@ -9,7 +9,6 @@
 
 
     <link rel="stylesheet" href="{% static 'libs/css/bootstrap.3.3.7.min.css' %}">
-    <link rel="stylesheet" href="{% static 'libs/css/bootstrap-theme.3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="{% static 'script.js' %}"></script>
 
@@ -21,7 +20,7 @@
     <div class="container">
         <div class="message-container">
 
-            {% include comment_post_template %}
+            {% include header_template %}
 
             {% include comments_list_template %}
 

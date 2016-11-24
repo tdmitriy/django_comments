@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 from django.http import Http404
 from django.shortcuts import render
-from django.core.paginator import Paginator, InvalidPage
+from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 
 from .models import Comment, User, Reply
 from .forms import FormPostComment, FormReplyToComment
@@ -10,35 +10,40 @@ from django.shortcuts import redirect
 import logging
 
 index_template = 'social/index.html'
+header_template = 'social/header.html'
 comments_list_template = 'social/comments_list.html'
 comments_replies_list_template = 'social/comments_replies_list.html'
-comment_post_template = 'social/comment_post.html'
 comment_reply_template = 'social/comment_reply.html'
 
 log = logging.getLogger(__name__)
 
 
 def index(request):
-    items_per_page = 3
+    items_per_page = 2
     comments_set = Comment.objects.all()
     paginator = Paginator(comments_set, items_per_page)
 
     comment_post_form = FormPostComment()
     comment_reply_form = FormReplyToComment()
 
-    try:
-        page = paginator.page(1)
-    except InvalidPage:
-        raise Http404
+    page = request.GET.get('page')
 
-    comments = get_comments_and_replies(page)
+    try:
+        comments_page = paginator.page(page)
+    except PageNotAnInteger:
+        comments_page = paginator.page(1)
+    except EmptyPage:
+        comments_page = paginator.page(paginator.num_pages)
+
+    comments_dict = get_comments_and_replies(comments_page)
     context = {
+        'header_template': header_template,
         'comments_list_template': comments_list_template,
         'comments_replies_list_template': comments_replies_list_template,
-        'comment_post_template': comment_post_template,
         'comment_reply_template': comment_reply_template,
 
-        'comments_list': comments,
+        'comments_dict': comments_dict,
+        'comments_page': comments_page,
 
         'comment_post_form': comment_post_form,
         'comment_reply_form': comment_reply_form,

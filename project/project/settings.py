@@ -109,7 +109,7 @@ LOGGING = {
         #     'formatter': 'simple',
         # },
         'social': {
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'handlers': ['console'],
             'formatter': 'simple',
         },
