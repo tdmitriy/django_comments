@@ -1,4 +1,4 @@
-from .models import Reply
+from .models import Comment
 from collections import OrderedDict
 
 
@@ -34,14 +34,28 @@ def get_comments_and_replies(page):
     :return dictionary like {comment: list_of_replies}:
     """
 
-    result = OrderedDict()
+    result = []
     comments = page.object_list
     comment_ids = comments.values_list('id', flat=True)
 
-    comment_replies = Reply.objects.filter(comment_id__in=comment_ids)
+    comment_replies = Comment.objects.filter(root_id__in=comment_ids).order_by('parent_id', 'pub_date')
     replies_tree = make_tree(comment_replies)
 
     for c in comments:
-        result[c] = [reply for reply in replies_tree if reply.comment_id == c.id]
+        c.children = [reply for reply in replies_tree if reply.root_id == c.id]
+        result.append(c)
 
     return result
+
+
+def get_pageable_json(page):
+    return {
+        "num_pages": page.paginator.num_pages,
+        "page_number": page.number,
+        "has_prev": bool(page.has_previous()),
+        "has_next": bool(page.has_next()),
+    }
+
+
+def get_comment_list_json(comments_list):
+    return [comment.as_json() for comment in comments_list]

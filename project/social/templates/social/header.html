@@ -15,39 +15,15 @@
 
     <div class="row">
         <div class="col-md-12">
-            <form action="{% url 'social:comment_add' %}" name="post_comment_form" method="post">
+            <form id="post_comment_form" action="{% url 'social:comment_add' %}" method="post">
                 {% csrf_token %}
                 <div class="input-group">
-                    {{ comment_post_form }}
-                    <span class="input-group-addon btn btn-default" onclick="post_comment_form.submit()">Post</span>
+
+                    {{ comment_post_form.as_p }}
+
+                    <span class="input-group-addon btn btn-default" onclick="postComment(false)">Post</span>
                 </div>
             </form>
         </div>
-    </div>
-
-    <div class="row">
-        <ul class="pager">
-            {% if comments_dict %}
-                <li>
-                    {% if comments_page.has_previous %}
-                        <a href="?page={{ comments_page.previous_page_number }}">
-                            <span class="glyphicon glyphicon-menu-left"></span>
-                        </a>
-                    {% endif %}
-
-                </li>
-                <li>Page {{ comments_page.number }} of {{ comments_page.paginator.num_pages }}</li>
-                <li>
-                    {% if comments_page.has_next %}
-                        <a href="?page={{ comments_page.next_page_number }}">
-                            <span class="glyphicon glyphicon-menu-right"></span>
-                        </a>
-                    {% endif %}
-
-                </li>
-            {% else %}
-                <li><h5>There are no comments yet.</h5></li>
-            {% endif %}
-        </ul>
     </div>
 </div>

@@ -16,13 +16,14 @@
             <div class="comment-content">{{ reply.content }}</div>
             <a href="" class="comment-reply-link" data-comment-id="{{ comment.id }}" data-parent-id="{{ reply.id }}">Reply</a>
 
-            {# reply form will be injected here by js #}
+             reply form will be injected here by js
         </div>
 
-        {# recursively render replies tree #}
+{#         recursively render replies tree#}
         {% if reply.children %}
             {% include comments_replies_list_template with replies=reply.children %}
         {% endif %}
 
     </div>
 {% endfor %}
+

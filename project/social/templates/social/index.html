@@ -10,7 +10,8 @@
 
     <link rel="stylesheet" href="{% static 'libs/css/bootstrap.3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'comment_tree.js' %}"></script>
+    <script src="{% static 'comment_util.js' %}"></script>
 
     <title>Home</title>
 </head>
@@ -20,15 +21,17 @@
     <div class="container">
         <div class="message-container">
 
-            {% include header_template %}
+            {% include 'social/header.html' %}
 
-            {% include comments_list_template %}
+            <div class="comments-wrapper">
+                {# comments tree will be injected here #}
+            </div>
 
 
         </div>
 
-        {# put hidden reply form in bottom of page #}
-        {% include comment_reply_template %}
+        {# put hidden forms in the bottom of page #}
+        {% include 'social/comment_reply.html' %}
 
     </div>
 </div>

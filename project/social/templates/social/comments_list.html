@@ -1,5 +1,5 @@
 <div class="comments-wrapper">
-    {% for comment, replies in comments_dict.items %}
+    {% for comment in comments_list %}
         <div id="comment-{{ comment.id }}" class="comment comment-level-1">
             <div class="comment-wrapper">
                 <div class="comment-header">
@@ -20,7 +20,9 @@
                 {# reply form will be injected here by js #}
             </div>
 
-            {% include comments_replies_list_template %}
+            {% if comment.children %}
+                {% include comments_list_template with comment_list=comment.children %}
+            {% endif %}
         </div>
 
     {% endfor %}
