@@ -1,0 +1,54 @@
+{% extends 'account/base.html' %}
+
+{% load account socialaccount %}
+
+{% block title %}<title>Log in</title>{% endblock %}
+
+{% block content %}
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+    <div class="container container-table">
+        <div class="row">
+            <div class="omb_login">
+                <h2 class="omb_authTitle">Login page</h2>
+                <hr class="divider">
+                <div class="row omb_row-sm-offset-3 omb_socialButtons">
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/accounts/facebook/login/" class="btn btn-lg btn-block omb_btn-facebook">
+                            <i class="fa fa-facebook fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <div class="tooltip-wrapper" data-toggle="tooltip"
+                             data-placement="bottom" title="Not available yet.">
+                            <a href="#" class="btn btn-lg btn-block omb_btn-vk">
+                                <i class="fa fa-vk fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <div class="tooltip-wrapper" data-toggle="tooltip"
+                             data-placement="bottom" title="Not available yet.">
+                            <a href="#" class="btn btn-lg btn-block omb_btn-google">
+                                <i class="fa fa-google-plus fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="text-center">
+                    <h3>Or go to the <a href="{% url 'social:index' %}">messages.</a></h3>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
+
+
+
+

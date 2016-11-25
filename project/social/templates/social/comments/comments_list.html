@@ -4,9 +4,9 @@
             <div class="comment-wrapper">
                 <div class="comment-header">
                     <img class="comment-header-avatar"
-                         src="http://www.gravatar.com/avatar/0641c4913a53a04c1af5ad5867a38488?s=35&d=mm">
+                         src="{{ comment.user.avatar_url }}">
                     <div class="comment-header-author">
-                        <span class="comment-header-author-name">{{ comment.user.get_name }}</span>:
+                        <span class="comment-header-author-name">{{ comment.user.full_name }}</span>:
                     </div>
                     <div class="comment-header-anchor">
                         <a class="comment-header-anchor-link" href="#">
@@ -15,12 +15,15 @@
                     </div>
                 </div>
                 <div class="comment-content">{{ comment.content }}</div>
-                <a href="" class="comment-reply-link" data-comment-id="{{ comment.id }}">Reply</a>
+
+                {% if user.is_authenticated %}
+                    <a href="" class="comment-reply-link" data-comment-id="{{ comment.id }}">Reply</a>
+                {% endif %}
 
                 {# reply form will be injected here by js #}
             </div>
 
-            {% include comments_replies_list_template %}
+            {% include 'social/comments/comments_replies_list.html' %}
         </div>
 
     {% endfor %}

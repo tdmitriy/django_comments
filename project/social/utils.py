@@ -23,7 +23,7 @@ def make_tree(items):
     return tree
 
 
-def get_comments_and_replies(page):
+def get_comments(page):
     """
     1) Take the ids of comments from the page object
     2) Filter replies with given comments ids

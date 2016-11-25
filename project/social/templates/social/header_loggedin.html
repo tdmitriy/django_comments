@@ -1,0 +1,34 @@
+<div class="user-panel">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="media">
+                <div class="media-left" href="#">
+                    <img class="media-object" src="{{ user.profile.avatar_url }}" alt="Generic placeholder image">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ user.profile.full_name }}</h4>
+                    <span>{{ user.email }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <a href="/accounts/logout" class="btn btn-default btn-sm pull-right">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="{% url 'social:comment_add' %}" name="post_comment_form" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                {{ comment_post_form }}
+                <span class="input-group-btn">
+                        <button class="btn btn-secondary btn-post-comment" type="submit">Post</button>
+                    </span>
+            </div>
+        </form>
+    </div>
+</div>

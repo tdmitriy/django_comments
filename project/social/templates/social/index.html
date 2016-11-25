@@ -1,40 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% load static %}
+{% include 'social/base.html' %}
 
-    <script src="{% static 'libs/js/jquery.3.1.1.min.js' %}"></script>
-    <script src="{% static 'libs/js/bootstrap.3.3.7.min.js' %}"></script>
+{% block title %}<title>Home</title>{% endblock %}
 
+{% block content %}
 
-    <link rel="stylesheet" href="{% static 'libs/css/bootstrap.3.3.7.min.css' %}">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'script.js' %}"></script>
+    <div class="container-fill">
+        <div class="container">
+            <div class="message-container">
 
-    <title>Home</title>
-</head>
-<body>
+                {% include 'social/header.html' %}
 
-<div class="container-fill">
-    <div class="container">
-        <div class="message-container">
+                {% include 'social/comments/comments_list.html' %}
 
-            {% include header_template %}
+            </div>
 
-            {% include comments_list_template %}
-
+            {# put hidden reply form in bottom of page #}
+            {% include 'social/comments/comment_reply.html' %}
 
         </div>
-
-        {# put hidden reply form in bottom of page #}
-        {% include comment_reply_template %}
-
     </div>
-</div>
 
-</body>
-</html>
-
+{% endblock %}
 
 

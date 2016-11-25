@@ -24,6 +24,10 @@ textarea {
     resize: none;
 }
 
+.btn-post-comment {
+    height: 74px;
+}
+
 .header-wrapper {
     padding-top: 2px;
     padding-bottom: 2px;
@@ -166,4 +170,38 @@ textarea {
 .user-panel {
     padding-top: 15px;
     padding-bottom: 20px;
+}
+
+.btn-fb {
+    background: #3b5998;
+}
+
+.btn-vk {
+    background: #507299;
+}
+
+.btn-google {
+    background: #c32f10;
+}
+
+.btn-fb, .btn-google, .btn-vk {
+    color: white;
+}
+
+.btn-fb,
+.btn-google,
+.btn-vk {
+    width: 100px;
+}
+
+.btn-vk,
+.btn-google {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.btn-vk:hover,
+.btn-fb:hover,
+.btn-google:hover {
+    color: white;
 }

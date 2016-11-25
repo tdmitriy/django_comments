@@ -21,6 +21,9 @@ class FormReplyToComment(forms.ModelForm):
         'rows': 3,
     }), label="")
 
+    comment_id = forms.CharField(widget=forms.HiddenInput, required=True, label="")
+    parent_id = forms.CharField(widget=forms.HiddenInput, required=False, label="", initial=None)
+
     class Meta:
         model = Reply
         exclude = ('user', 'comment', 'parent',)
