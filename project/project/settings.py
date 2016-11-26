@@ -8,7 +8,7 @@ SECRET_KEY = 'tl!!)0k#%d%-vs@k7+sfid#)qv4zkedx_1at#qz0rp0edtg9o3'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['haswell.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'django.contrib.sites',
@@ -117,15 +117,22 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'social/static'),
 )
 
 SITE_ID = 1
 
+# To avoid 'connection refused error' see http://stackoverflow.com/a/21563228/5433344
+# because we don't want to send any emails
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SOCIALACCOUNT_ADAPTER = 'social.adapters.CustomSocialAccountAdapter'
+
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
