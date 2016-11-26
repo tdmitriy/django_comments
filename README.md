@@ -7,7 +7,7 @@
 1. `git clone` and go to the project folder
 2. setup your virtualenv `virtualenv env`
 3. install project libs/frameworks `pip install -r requirements.pip`
-4. run django migrations `python manage.py makemigrations` and `python manage.py migrate`
+4. run django migrations `python manage.py migrate`
 5. create superuser `python manage.py createsuperuser`
 6. follow allauth [instructions](https://django-allauth.readthedocs.io/en/latest/installation.html) and setup your project
 7. next you need to create aplication in facebook deveoper [account](https://developers.facebook.com/) and configure it.
