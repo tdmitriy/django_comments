@@ -3,6 +3,7 @@ sudo: false
 python:
   - "3.4"
   - "3.5"
+cache: pip
 env:
   - DJANGO="Django>=1.8" DB=sqlite
 install:
