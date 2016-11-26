@@ -1,5 +1,8 @@
 # Django web app with threaded comments and facebook authorization via [allauth](https://github.com/pennersr/django-allauth)
 
+
+[![Build Status](https://travis-ci.org/tdmitriy/django_comments.svg?branch=master)](https://travis-ci.org/tdmitriy/django_comments)
+
 ## How to setup
 1. `git clone` and go to the project folder
 2. setup your virtualenv `virtualenv env`
