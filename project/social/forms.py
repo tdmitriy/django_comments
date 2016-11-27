@@ -24,6 +24,14 @@ class FormReplyToComment(forms.ModelForm):
     comment_id = forms.CharField(widget=forms.HiddenInput, required=True, label="")
     parent_id = forms.CharField(widget=forms.HiddenInput, required=False, label="", initial=None)
 
+    def save(self, commit=True):
+        reply = super(FormReplyToComment, self).save(commit=False)
+        reply.content = self.cleaned_data.get('content')
+        reply.comment_id = self.cleaned_data.get('comment_id')
+        reply.parent_id = self.cleaned_data.get('parent_id')
+
+        return reply.save()
+
     class Meta:
         model = Reply
         exclude = ('user', 'comment', 'parent',)

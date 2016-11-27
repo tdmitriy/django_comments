@@ -1,4 +1,3 @@
-from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from allauth.exceptions import ImmediateHttpResponse
 from allauth.socialaccount.signals import pre_social_login
 from allauth.account.signals import user_signed_up
@@ -9,18 +8,6 @@ from django.shortcuts import redirect
 from django.conf import settings
 from .models import UserProfile
 import hashlib
-
-
-# django allauth facebook redirects to signup when retrieved email matches an existing user's email
-# see here http://stackoverflow.com/a/24358708/5433344
-class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
-    """
-    Overrides allauth.socialaccount.adapter.DefaultSocialAccountAdapter.pre_social_login to
-    perform some actions right after successful login
-    """
-
-    def pre_social_login(self, request, sociallogin):
-        pass  # TODO Future: To perform some actions right after successful login
 
 
 @receiver(pre_social_login)
@@ -42,6 +29,14 @@ def link_to_local_user(sender, request, sociallogin, **kwargs):
         raise ImmediateHttpResponse(redirect(settings.LOGIN_REDIRECT_URL))
 
 
+# create user profile after facebook signed up
+@receiver(user_signed_up)
+def on_user_signed_up(request, user, sociallogin=None, **kwargs):
+    picture_url = get_user_avatar_url(user, sociallogin)
+    profile = UserProfile(user=user, avatar_url=picture_url)
+    profile.save()
+
+
 # For example we can create superuser via console and UserProfile for him will be empty, so fill it
 def link_social_info_to_superuser(user, sociallogin):
     if user and user.is_superuser:
@@ -55,14 +50,6 @@ def link_social_info_to_superuser(user, sociallogin):
             picture_url = get_user_avatar_url(user, sociallogin)
             profile = UserProfile(user=user, avatar_url=picture_url)
             profile.save()
-
-
-# create user profile after facebook signed up
-@receiver(user_signed_up)
-def on_signed_up(request, user, sociallogin=None, **kwargs):
-    picture_url = get_user_avatar_url(user, sociallogin)
-    profile = UserProfile(user=user, avatar_url=picture_url)
-    profile.save()
 
 
 def get_user_avatar_url(user, sociallogin):

@@ -11,16 +11,16 @@
         <ul class="pager">
             {% if comments_dict %}
                 <li>
-                    {% if comments_page.has_previous %}
-                        <a href="?page={{ comments_page.previous_page_number }}">
+                    {% if comments_pageable.has_previous %}
+                        <a href="?page={{ comments_pageable.previous_page_number }}">
                             <span class="glyphicon glyphicon-menu-left"></span>
                         </a>
                     {% endif %}
                 </li>
-                <li>Page {{ comments_page.number }} of {{ comments_page.paginator.num_pages }}</li>
+                <li>Page {{ comments_pageable.number }} of {{ comments_pageable.paginator.num_pages }}</li>
                 <li>
-                    {% if comments_page.has_next %}
-                        <a href="?page={{ comments_page.next_page_number }}">
+                    {% if comments_pageable.has_next %}
+                        <a href="?page={{ comments_pageable.next_page_number }}">
                             <span class="glyphicon glyphicon-menu-right"></span>
                         </a>
                     {% endif %}

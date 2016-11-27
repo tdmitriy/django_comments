@@ -8,7 +8,7 @@ SECRET_KEY = 'tl!!)0k#%d%-vs@k7+sfid#)qv4zkedx_1at#qz0rp0edtg9o3'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['haswell.pythonanywhere.com']
+ALLOWED_HOSTS = ['haswell.pythonanywhere.com', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.sites',
@@ -127,8 +127,6 @@ SITE_ID = 1
 # To avoid 'connection refused error' see http://stackoverflow.com/a/21563228/5433344
 # because we don't want to send any emails
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-SOCIALACCOUNT_ADAPTER = 'social.adapters.CustomSocialAccountAdapter'
 
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login'
