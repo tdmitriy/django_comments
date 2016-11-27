@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'tl!!)0k#%d%-vs@k7+sfid#)qv4zkedx_1at#qz0rp0edtg9o3'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['haswell.pythonanywhere.com', 'localhost']
 

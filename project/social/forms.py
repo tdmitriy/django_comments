@@ -30,7 +30,10 @@ class FormReplyToComment(forms.ModelForm):
         reply.comment_id = self.cleaned_data.get('comment_id')
         reply.parent_id = self.cleaned_data.get('parent_id')
 
-        return reply.save()
+        if commit:
+            reply.save()
+
+        return reply
 
     class Meta:
         model = Reply

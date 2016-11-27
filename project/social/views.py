@@ -17,7 +17,7 @@ class IndexView(TemplateView):
     template_name = 'social/index.html'
 
     def get(self, request, *args, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
+        context = self.get_context_data()
         comments_per_page = 10
         page = request.GET.get('page')
 
@@ -27,12 +27,11 @@ class IndexView(TemplateView):
         comments_pageable = CommentUtils.get_comments_pageable(page=page, per_page=comments_per_page)
         comments_dict = CommentUtils.get_comments(comments_pageable)
 
-        context['comments_dict'] = comments_dict
-        context['comments_pageable'] = comments_pageable
         context['comment_post_form'] = comment_post_form
         context['comment_reply_form'] = comment_reply_form
-
-        return render(request, 'social/index.html', context)
+        context['comments_dict'] = comments_dict
+        context['comments_pageable'] = comments_pageable
+        return render(request, self.template_name, context)
 
 
 @method_decorator(login_required, name='dispatch')
