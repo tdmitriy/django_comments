@@ -14,3 +14,6 @@
 8. after that, you need to go to the django admin panel and change the existing site in `Site` model from `example.com` to your project url, for example `localhost:8000`
 9. in the current admin panel go to the `Social application model` and select your site from prev step and then configure it with your facebook `app id`, `secret key` and poll down your site from `Available sites` to `Choosen sites`. Save.
 10. Thats it.
+
+
+Working [DEMO](http://haswell.pythonanywhere.com/)
